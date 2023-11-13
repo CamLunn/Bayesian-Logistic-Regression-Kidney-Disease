@@ -1,0 +1,277 @@
+""	"construct"	"read_pattern"	"expected_neg"	"slide name"	"class"	"segment"	"area"	"region"	"pathology"	"nuclei"
+"DSP-1001250007851-H-A02.dcc"	"directPCR"	"2x27"	0	"disease3"	"DKD"	"Geometric Segment"	31797.59	"glomerulus"	"abnormal"	16871
+"DSP-1001250007851-H-A03.dcc"	"directPCR"	"2x27"	0	"disease3"	"DKD"	"Geometric Segment"	16920.1	"glomerulus"	"abnormal"	17684
+"DSP-1001250007851-H-A04.dcc"	"directPCR"	"2x27"	0	"disease3"	"DKD"	"Geometric Segment"	14312.33	"glomerulus"	"abnormal"	15108
+"DSP-1001250007851-H-A05.dcc"	"directPCR"	"2x27"	0	"disease3"	"DKD"	"Geometric Segment"	20032.84	"glomerulus"	"abnormal"	15271
+"DSP-1001250007851-H-A06.dcc"	"directPCR"	"2x27"	0	"disease3"	"DKD"	"Geometric Segment"	27583.26	"glomerulus"	"abnormal"	18256
+"DSP-1001250007851-H-A07.dcc"	"directPCR"	"2x27"	0	"disease3"	"DKD"	"Geometric Segment"	18164.84	"glomerulus"	"abnormal"	16899
+"DSP-1001250007851-H-A08.dcc"	"directPCR"	"2x27"	0	"disease3"	"DKD"	"Geometric Segment"	25827.59	"glomerulus"	"abnormal"	17658
+"DSP-1001250007851-H-A09.dcc"	"directPCR"	"2x27"	0	"disease3"	"DKD"	"Geometric Segment"	12021.51	"glomerulus"	"abnormal"	18679
+"DSP-1001250007851-H-A10.dcc"	"directPCR"	"2x27"	0	"disease3"	"DKD"	"Geometric Segment"	22156.95	"glomerulus"	"abnormal"	16803
+"DSP-1001250007851-H-A11.dcc"	"directPCR"	"2x27"	0	"disease3"	"DKD"	"Geometric Segment"	26042.71	"glomerulus"	"abnormal"	18590
+"DSP-1001250007851-H-A12.dcc"	"directPCR"	"2x27"	0	"disease3"	"DKD"	"Geometric Segment"	14519.38	"glomerulus"	"abnormal"	19000
+"DSP-1001250007851-H-B01.dcc"	"directPCR"	"2x27"	0	"disease3"	"DKD"	"Geometric Segment"	24344.16	"glomerulus"	"abnormal"	15982
+"DSP-1001250007851-H-B02.dcc"	"directPCR"	"2x27"	0	"disease3"	"DKD"	"Geometric Segment"	19077.46	"glomerulus"	"abnormal"	16229
+"DSP-1001250007851-H-B03.dcc"	"directPCR"	"2x27"	0	"disease3"	"DKD"	"Geometric Segment"	21760.92	"glomerulus"	"abnormal"	19612
+"DSP-1001250007851-H-B04.dcc"	"directPCR"	"2x27"	0	"disease3"	"DKD"	"Geometric Segment"	20961.11	"glomerulus"	"abnormal"	19269
+"DSP-1001250007851-H-B05.dcc"	"directPCR"	"2x27"	0	"disease3"	"DKD"	"Geometric Segment"	19698.46	"glomerulus"	"abnormal"	16041
+"DSP-1001250007851-H-B06.dcc"	"directPCR"	"2x27"	0	"disease3"	"DKD"	"Geometric Segment"	19074.88	"glomerulus"	"abnormal"	14578
+"DSP-1001250007851-H-B07.dcc"	"directPCR"	"2x27"	0	"disease3"	"DKD"	"Geometric Segment"	18329.61	"glomerulus"	"abnormal"	18799
+"DSP-1001250007851-H-B08.dcc"	"directPCR"	"2x27"	0	"disease3"	"DKD"	"Geometric Segment"	21006.46	"glomerulus"	"abnormal"	15977
+"DSP-1001250007851-H-B09.dcc"	"directPCR"	"2x27"	0	"disease3"	"DKD"	"Geometric Segment"	25569.54	"glomerulus"	"abnormal"	19052
+"DSP-1001250007851-H-B10.dcc"	"directPCR"	"2x27"	0	"disease3"	"DKD"	"Geometric Segment"	25085.55	"glomerulus"	"abnormal"	18464
+"DSP-1001250007851-H-B11.dcc"	"directPCR"	"2x27"	0	"disease3"	"DKD"	"Geometric Segment"	26709.05	"glomerulus"	"abnormal"	17967
+"DSP-1001250007851-H-B12.dcc"	"directPCR"	"2x27"	0	"disease3"	"DKD"	"Geometric Segment"	22800.22	"glomerulus"	"abnormal"	18626
+"DSP-1001250007851-H-C01.dcc"	"directPCR"	"2x27"	0	"disease3"	"DKD"	"Geometric Segment"	27694.13	"glomerulus"	"abnormal"	16140
+"DSP-1001250007851-H-C02.dcc"	"directPCR"	"2x27"	0	"disease3"	"DKD"	"Geometric Segment"	19642.94	"glomerulus"	"abnormal"	16742
+"DSP-1001250007851-H-C03.dcc"	"directPCR"	"2x27"	0	"disease3"	"DKD"	"Geometric Segment"	29678.81	"glomerulus"	"abnormal"	15818
+"DSP-1001250007851-H-C04.dcc"	"directPCR"	"2x27"	0	"disease3"	"DKD"	"Geometric Segment"	18317.35	"glomerulus"	"abnormal"	17937
+"DSP-1001250007851-H-C05.dcc"	"directPCR"	"2x27"	0	"disease3"	"DKD"	"Geometric Segment"	16730.8	"glomerulus"	"abnormal"	16590
+"DSP-1001250007851-H-C06.dcc"	"directPCR"	"2x27"	0	"disease3"	"DKD"	"Geometric Segment"	20956.11	"glomerulus"	"abnormal"	18444
+"DSP-1001250007851-H-C07.dcc"	"directPCR"	"2x27"	0	"disease3"	"DKD"	"Geometric Segment"	17982.8	"glomerulus"	"abnormal"	14653
+"DSP-1001250007851-H-C08.dcc"	"directPCR"	"2x27"	0	"disease3"	"DKD"	"Geometric Segment"	27578.42	"glomerulus"	"abnormal"	18423
+"DSP-1001250007851-H-C09.dcc"	"directPCR"	"2x27"	0	"disease3"	"DKD"	"Geometric Segment"	22428.88	"glomerulus"	"abnormal"	15028
+"DSP-1001250007851-H-C10.dcc"	"directPCR"	"2x27"	0	"disease3"	"DKD"	"Geometric Segment"	22709.36	"glomerulus"	"abnormal"	18346
+"DSP-1001250007851-H-C11.dcc"	"directPCR"	"2x27"	0	"disease3"	"DKD"	"Geometric Segment"	33264.39	"glomerulus"	"abnormal"	15381
+"DSP-1001250007851-H-C12.dcc"	"directPCR"	"2x27"	0	"disease3"	"DKD"	"Geometric Segment"	21286.78	"glomerulus"	"abnormal"	17037
+"DSP-1001250007851-H-D01.dcc"	"directPCR"	"2x27"	0	"disease3"	"DKD"	"Geometric Segment"	23064.56	"glomerulus"	"abnormal"	17357
+"DSP-1001250007851-H-D02.dcc"	"directPCR"	"2x27"	0	"disease3"	"DKD"	"Geometric Segment"	10588.6	"glomerulus"	"abnormal"	17195
+"DSP-1001250007851-H-D03.dcc"	"directPCR"	"2x27"	0	"disease3"	"DKD"	"Geometric Segment"	23902.14	"glomerulus"	"abnormal"	16858
+"DSP-1001250007851-H-D04.dcc"	"directPCR"	"2x27"	0	"disease3"	"DKD"	"Geometric Segment"	27538.88	"glomerulus"	"abnormal"	19192
+"DSP-1001250007851-H-D05.dcc"	"directPCR"	"2x27"	0	"disease3"	"DKD"	"Geometric Segment"	13586.59	"glomerulus"	"abnormal"	17616
+"DSP-1001250007851-H-D06.dcc"	"directPCR"	"2x27"	0	"disease3"	"DKD"	"Geometric Segment"	15162.65	"glomerulus"	"abnormal"	18629
+"DSP-1001250007851-H-D07.dcc"	"directPCR"	"2x27"	0	"disease3"	"DKD"	"Geometric Segment"	21049.87	"glomerulus"	"abnormal"	17714
+"DSP-1001250007851-H-D08.dcc"	"directPCR"	"2x27"	0	"disease3"	"DKD"	"Geometric Segment"	16106.74	"glomerulus"	"abnormal"	16741
+"DSP-1001250007851-H-D09.dcc"	"directPCR"	"2x27"	0	"disease3"	"DKD"	"Geometric Segment"	19138.62	"glomerulus"	"abnormal"	16218
+"DSP-1001250007851-H-D10.dcc"	"directPCR"	"2x27"	0	"disease3"	"DKD"	"Geometric Segment"	21682.97	"glomerulus"	"abnormal"	14898
+"DSP-1001250007851-H-D11.dcc"	"directPCR"	"2x27"	0	"disease3"	"DKD"	"Geometric Segment"	22306.23	"glomerulus"	"abnormal"	17942
+"DSP-1001250007851-H-D12.dcc"	"directPCR"	"2x27"	0	"disease3"	"DKD"	"Geometric Segment"	17138.29	"glomerulus"	"abnormal"	15790
+"DSP-1001250007851-H-E01.dcc"	"directPCR"	"2x27"	0	"disease4"	"DKD"	"PanCK"	23053.27	"tubule"	"NA"	15629
+"DSP-1001250007851-H-E02.dcc"	"directPCR"	"2x27"	0	"disease4"	"DKD"	"neg"	137927.28	"tubule"	"NA"	15881
+"DSP-1001250007851-H-E03.dcc"	"directPCR"	"2x27"	0	"disease4"	"DKD"	"PanCK"	17553.53	"tubule"	"NA"	19867
+"DSP-1001250007851-H-E04.dcc"	"directPCR"	"2x27"	0	"disease4"	"DKD"	"neg"	123467.45	"tubule"	"NA"	14913
+"DSP-1001250007851-H-E05.dcc"	"directPCR"	"2x27"	0	"disease4"	"DKD"	"PanCK"	22011.87	"tubule"	"NA"	16895
+"DSP-1001250007851-H-E06.dcc"	"directPCR"	"2x27"	0	"disease4"	"DKD"	"neg"	209925.63	"tubule"	"NA"	14578
+"DSP-1001250007851-H-E07.dcc"	"directPCR"	"2x27"	0	"disease4"	"DKD"	"PanCK"	17157.17	"tubule"	"NA"	18695
+"DSP-1001250007851-H-E08.dcc"	"directPCR"	"2x27"	0	"disease4"	"DKD"	"neg"	145616.81	"tubule"	"NA"	16397
+"DSP-1001250007851-H-E09.dcc"	"directPCR"	"2x27"	0	"disease4"	"DKD"	"PanCK"	10254.22	"tubule"	"NA"	17898
+"DSP-1001250007851-H-E10.dcc"	"directPCR"	"2x27"	0	"disease4"	"DKD"	"neg"	105417.67	"tubule"	"NA"	19067
+"DSP-1001250007851-H-E11.dcc"	"directPCR"	"2x27"	0	"disease4"	"DKD"	"PanCK"	34076.47	"tubule"	"NA"	18835
+"DSP-1001250007851-H-E12.dcc"	"directPCR"	"2x27"	0	"disease4"	"DKD"	"neg"	137743.3	"tubule"	"NA"	14395
+"DSP-1001250007851-H-F01.dcc"	"directPCR"	"2x27"	0	"disease4"	"DKD"	"Geometric Segment"	74627.75	"glomerulus"	"normal"	16471
+"DSP-1001250007851-H-F02.dcc"	"directPCR"	"2x27"	0	"disease4"	"DKD"	"Geometric Segment"	56775.66	"glomerulus"	"normal"	16354
+"DSP-1001250007851-H-F03.dcc"	"directPCR"	"2x27"	0	"disease4"	"DKD"	"Geometric Segment"	80786.89	"glomerulus"	"normal"	19574
+"DSP-1001250007851-H-F04.dcc"	"directPCR"	"2x27"	0	"disease4"	"DKD"	"Geometric Segment"	42607.61	"glomerulus"	"normal"	15160
+"DSP-1001250007851-H-F05.dcc"	"directPCR"	"2x27"	0	"disease4"	"DKD"	"Geometric Segment"	71246.79	"glomerulus"	"normal"	15570
+"DSP-1001250007851-H-F06.dcc"	"directPCR"	"2x27"	0	"disease4"	"DKD"	"Geometric Segment"	48856.65	"glomerulus"	"normal"	18380
+"DSP-1001250007851-H-F07.dcc"	"directPCR"	"2x27"	0	"disease4"	"DKD"	"Geometric Segment"	65511.44	"glomerulus"	"abnormal"	19268
+"DSP-1001250007851-H-F08.dcc"	"directPCR"	"2x27"	0	"disease4"	"DKD"	"Geometric Segment"	19972.48	"glomerulus"	"abnormal"	19667
+"DSP-1001250007851-H-F09.dcc"	"directPCR"	"2x27"	0	"disease4"	"DKD"	"Geometric Segment"	44778.52	"glomerulus"	"abnormal"	16269
+"DSP-1001250007851-H-F10.dcc"	"directPCR"	"2x27"	0	"disease4"	"DKD"	"Geometric Segment"	20051.72	"glomerulus"	"abnormal"	14364
+"DSP-1001250007851-H-F11.dcc"	"directPCR"	"2x27"	0	"disease4"	"DKD"	"Geometric Segment"	51298.36	"glomerulus"	"abnormal"	16532
+"DSP-1001250007851-H-F12.dcc"	"directPCR"	"2x27"	0	"disease4"	"DKD"	"Geometric Segment"	29210.8	"glomerulus"	"abnormal"	15841
+"DSP-1001250007864-D-A02.dcc"	"directPCR"	"2x27"	0	"normal3"	"normal"	"PanCK"	20265.55	"tubule"	"NA"	15471
+"DSP-1001250007864-D-A03.dcc"	"directPCR"	"2x27"	0	"normal3"	"normal"	"neg"	91483.62	"tubule"	"NA"	14470
+"DSP-1001250007864-D-A04.dcc"	"directPCR"	"2x27"	0	"normal3"	"normal"	"PanCK"	12966.08	"tubule"	"NA"	19502
+"DSP-1001250007864-D-A05.dcc"	"directPCR"	"2x27"	0	"normal3"	"normal"	"neg"	133866.42	"tubule"	"NA"	14339
+"DSP-1001250007864-D-A06.dcc"	"directPCR"	"2x27"	0	"normal3"	"normal"	"PanCK"	23336.81	"tubule"	"NA"	18350
+"DSP-1001250007864-D-A07.dcc"	"directPCR"	"2x27"	0	"normal3"	"normal"	"neg"	174741.6	"tubule"	"NA"	14925
+"DSP-1001250007864-D-A08.dcc"	"directPCR"	"2x27"	0	"normal3"	"normal"	"PanCK"	15875.8	"tubule"	"NA"	17532
+"DSP-1001250007864-D-A09.dcc"	"directPCR"	"2x27"	0	"normal3"	"normal"	"neg"	122888.57	"tubule"	"NA"	17454
+"DSP-1001250007864-D-A10.dcc"	"directPCR"	"2x27"	0	"normal3"	"normal"	"PanCK"	23311.32	"tubule"	"NA"	14120
+"DSP-1001250007864-D-A11.dcc"	"directPCR"	"2x27"	0	"normal3"	"normal"	"neg"	89287.05	"tubule"	"NA"	17195
+"DSP-1001250007864-D-A12.dcc"	"directPCR"	"2x27"	0	"normal3"	"normal"	"PanCK"	9671.79	"tubule"	"NA"	15895
+"DSP-1001250007864-D-B01.dcc"	"directPCR"	"2x27"	0	"normal3"	"normal"	"neg"	77969.65	"tubule"	"NA"	19914
+"DSP-1001250007864-D-B02.dcc"	"directPCR"	"2x27"	0	"normal3"	"normal"	"Geometric Segment"	27983.33	"glomerulus"	"normal"	18634
+"DSP-1001250007864-D-B03.dcc"	"directPCR"	"2x27"	0	"normal3"	"normal"	"Geometric Segment"	23475.44	"glomerulus"	"normal"	19032
+"DSP-1001250007864-D-B04.dcc"	"directPCR"	"2x27"	0	"normal3"	"normal"	"Geometric Segment"	14662.85	"glomerulus"	"normal"	19757
+"DSP-1001250007864-D-B05.dcc"	"directPCR"	"2x27"	0	"normal3"	"normal"	"Geometric Segment"	24797.65	"glomerulus"	"normal"	16795
+"DSP-1001250007864-D-B06.dcc"	"directPCR"	"2x27"	0	"normal3"	"normal"	"Geometric Segment"	24350.46	"glomerulus"	"normal"	17130
+"DSP-1001250007864-D-B07.dcc"	"directPCR"	"2x27"	0	"normal3"	"normal"	"Geometric Segment"	22468.42	"glomerulus"	"normal"	18471
+"DSP-1001250007864-D-B08.dcc"	"directPCR"	"2x27"	0	"normal3"	"normal"	"Geometric Segment"	25761.9	"glomerulus"	"normal"	17797
+"DSP-1001250007864-D-B09.dcc"	"directPCR"	"2x27"	0	"normal3"	"normal"	"Geometric Segment"	23327.94	"glomerulus"	"normal"	17022
+"DSP-1001250007864-D-B10.dcc"	"directPCR"	"2x27"	0	"normal3"	"normal"	"Geometric Segment"	26355.95	"glomerulus"	"normal"	19277
+"DSP-1001250007864-D-B11.dcc"	"directPCR"	"2x27"	0	"normal3"	"normal"	"Geometric Segment"	25468.51	"glomerulus"	"normal"	17248
+"DSP-1001250007864-D-B12.dcc"	"directPCR"	"2x27"	0	"normal3"	"normal"	"Geometric Segment"	26808.95	"glomerulus"	"normal"	14222
+"DSP-1001250007864-D-C01.dcc"	"directPCR"	"2x27"	0	"normal3"	"normal"	"Geometric Segment"	24417.75	"glomerulus"	"normal"	14799
+"DSP-1001250007864-D-C02.dcc"	"directPCR"	"2x27"	0	"normal3"	"normal"	"Geometric Segment"	26498.77	"glomerulus"	"normal"	18894
+"DSP-1001250007864-D-C03.dcc"	"directPCR"	"2x27"	0	"normal3"	"normal"	"Geometric Segment"	31804.37	"glomerulus"	"normal"	18706
+"DSP-1001250007864-D-C04.dcc"	"directPCR"	"2x27"	0	"normal3"	"normal"	"Geometric Segment"	35587.97	"glomerulus"	"normal"	16999
+"DSP-1001250007864-D-C05.dcc"	"directPCR"	"2x27"	0	"normal3"	"normal"	"Geometric Segment"	26084.67	"glomerulus"	"abnormal"	17750
+"DSP-1001250007864-D-C06.dcc"	"directPCR"	"2x27"	0	"normal3"	"normal"	"Geometric Segment"	22127.58	"glomerulus"	"normal"	15833
+"DSP-1001250007864-D-C07.dcc"	"directPCR"	"2x27"	0	"normal3"	"normal"	"Geometric Segment"	21787.39	"glomerulus"	"normal"	18390
+"DSP-1001250007864-D-C08.dcc"	"directPCR"	"2x27"	0	"normal3"	"normal"	"Geometric Segment"	27479.17	"glomerulus"	"normal"	15614
+"DSP-1001250007864-D-C09.dcc"	"directPCR"	"2x27"	0	"normal3"	"normal"	"Geometric Segment"	25095.88	"glomerulus"	"normal"	16768
+"DSP-1001250007864-D-C11.dcc"	"directPCR"	"2x27"	0	"normal3"	"normal"	"Geometric Segment"	35146.27	"glomerulus"	"normal"	16632
+"DSP-1001250007864-D-C12.dcc"	"directPCR"	"2x27"	0	"normal3"	"normal"	"Geometric Segment"	30810.9	"glomerulus"	"normal"	15578
+"DSP-1001250007864-D-D01.dcc"	"directPCR"	"2x27"	0	"normal3"	"normal"	"Geometric Segment"	27445.12	"glomerulus"	"normal"	16753
+"DSP-1001250007864-D-D02.dcc"	"directPCR"	"2x27"	0	"normal3"	"normal"	"Geometric Segment"	49933.55	"glomerulus"	"normal"	15780
+"DSP-1001250007864-D-D03.dcc"	"directPCR"	"2x27"	0	"normal3"	"normal"	"Geometric Segment"	41998.39	"glomerulus"	"normal"	17146
+"DSP-1001250007864-D-D04.dcc"	"directPCR"	"2x27"	0	"normal3"	"normal"	"Geometric Segment"	31837.78	"glomerulus"	"normal"	18508
+"DSP-1001250007864-D-D05.dcc"	"directPCR"	"2x27"	0	"normal3"	"normal"	"Geometric Segment"	20978.54	"glomerulus"	"normal"	16928
+"DSP-1001250007864-D-D06.dcc"	"directPCR"	"2x27"	0	"normal3"	"normal"	"Geometric Segment"	25290.51	"glomerulus"	"normal"	15091
+"DSP-1001250007864-D-D07.dcc"	"directPCR"	"2x27"	0	"normal3"	"normal"	"Geometric Segment"	25689.6	"glomerulus"	"normal"	14998
+"DSP-1001250007864-D-D08.dcc"	"directPCR"	"2x27"	0	"normal3"	"normal"	"Geometric Segment"	34535.6	"glomerulus"	"normal"	16110
+"DSP-1001250007864-D-D09.dcc"	"directPCR"	"2x27"	0	"normal3"	"normal"	"Geometric Segment"	24650.3	"glomerulus"	"normal"	19548
+"DSP-1001250007864-D-D10.dcc"	"directPCR"	"2x27"	0	"normal3"	"normal"	"Geometric Segment"	18153.22	"glomerulus"	"normal"	15574
+"DSP-1001250007864-D-D11.dcc"	"directPCR"	"2x27"	0	"normal3"	"normal"	"Geometric Segment"	20003.47	"glomerulus"	"normal"	18274
+"DSP-1001250007864-D-D12.dcc"	"directPCR"	"2x27"	0	"normal3"	"normal"	"Geometric Segment"	30229.28	"glomerulus"	"normal"	15621
+"DSP-1001250007864-D-E01.dcc"	"directPCR"	"2x27"	0	"normal3"	"normal"	"Geometric Segment"	36097.13	"glomerulus"	"normal"	18394
+"DSP-1001250007864-D-E02.dcc"	"directPCR"	"2x27"	0	"normal3"	"normal"	"Geometric Segment"	22703.07	"glomerulus"	"normal"	16327
+"DSP-1001250007864-D-E03.dcc"	"directPCR"	"2x27"	0	"normal3"	"normal"	"Geometric Segment"	30029.65	"glomerulus"	"normal"	18675
+"DSP-1001250007864-D-E04.dcc"	"directPCR"	"2x27"	0	"normal3"	"normal"	"Geometric Segment"	12920.73	"glomerulus"	"normal"	16651
+"DSP-1001250007864-D-E05.dcc"	"directPCR"	"2x27"	0	"normal3"	"normal"	"Geometric Segment"	17744.6	"glomerulus"	"normal"	14358
+"DSP-1001250007864-D-E06.dcc"	"directPCR"	"2x27"	0	"normal3"	"normal"	"Geometric Segment"	38272.73	"glomerulus"	"normal"	15200
+"DSP-1001250007864-D-E07.dcc"	"directPCR"	"2x27"	0	"normal3"	"normal"	"Geometric Segment"	34006.59	"glomerulus"	"abnormal"	18418
+"DSP-1001250007864-D-E08.dcc"	"directPCR"	"2x27"	0	"normal3"	"normal"	"Geometric Segment"	28535.9	"glomerulus"	"abnormal"	14498
+"DSP-1001250007864-D-E09.dcc"	"directPCR"	"2x27"	0	"normal3"	"normal"	"Geometric Segment"	23919.73	"glomerulus"	"normal"	15593
+"DSP-1001250007864-D-E10.dcc"	"directPCR"	"2x27"	0	"normal3"	"normal"	"Geometric Segment"	22439.69	"glomerulus"	"normal"	15960
+"DSP-1001250007864-D-E11.dcc"	"directPCR"	"2x27"	0	"normal3"	"normal"	"Geometric Segment"	20066.08	"glomerulus"	"normal"	16547
+"DSP-1001250007864-D-E12.dcc"	"directPCR"	"2x27"	0	"normal3"	"normal"	"Geometric Segment"	23067.79	"glomerulus"	"normal"	15986
+"DSP-1001250007864-D-F01.dcc"	"directPCR"	"2x27"	0	"normal3"	"normal"	"Geometric Segment"	33416.58	"glomerulus"	"normal"	18687
+"DSP-1001250007864-D-F02.dcc"	"directPCR"	"2x27"	0	"normal4"	"normal"	"PanCK"	16012.17	"tubule"	"NA"	17595
+"DSP-1001250007864-D-F03.dcc"	"directPCR"	"2x27"	0	"normal4"	"normal"	"neg"	127197.96	"tubule"	"NA"	15175
+"DSP-1001250007864-D-F04.dcc"	"directPCR"	"2x27"	0	"normal4"	"normal"	"PanCK"	24168.74	"tubule"	"NA"	17561
+"DSP-1001250007864-D-F05.dcc"	"directPCR"	"2x27"	0	"normal4"	"normal"	"neg"	71727.71	"tubule"	"NA"	18190
+"DSP-1001250007864-D-F06.dcc"	"directPCR"	"2x27"	0	"normal4"	"normal"	"PanCK"	34576.91	"tubule"	"NA"	18317
+"DSP-1001250007864-D-F07.dcc"	"directPCR"	"2x27"	0	"normal4"	"normal"	"neg"	91677.76	"tubule"	"NA"	17216
+"DSP-1001250007864-D-F08.dcc"	"directPCR"	"2x27"	0	"normal4"	"normal"	"PanCK"	29351.52	"tubule"	"NA"	17024
+"DSP-1001250007864-D-F09.dcc"	"directPCR"	"2x27"	0	"normal4"	"normal"	"neg"	85295.1	"tubule"	"NA"	18792
+"DSP-1001250007864-D-F10.dcc"	"directPCR"	"2x27"	0	"normal4"	"normal"	"PanCK"	12287.31	"tubule"	"NA"	18968
+"DSP-1001250007864-D-F11.dcc"	"directPCR"	"2x27"	0	"normal4"	"normal"	"neg"	90680.26	"tubule"	"NA"	18223
+"DSP-1001250007864-D-F12.dcc"	"directPCR"	"2x27"	0	"normal4"	"normal"	"PanCK"	19644.72	"tubule"	"NA"	16795
+"DSP-1001250007864-D-G01.dcc"	"directPCR"	"2x27"	0	"normal4"	"normal"	"neg"	56847.48	"tubule"	"NA"	15844
+"DSP-1001250007864-D-G02.dcc"	"directPCR"	"2x27"	0	"normal4"	"normal"	"Geometric Segment"	11855.13	"glomerulus"	"normal"	14869
+"DSP-1001250007864-D-G03.dcc"	"directPCR"	"2x27"	0	"normal4"	"normal"	"Geometric Segment"	21459.78	"glomerulus"	"normal"	19044
+"DSP-1001250007864-D-G04.dcc"	"directPCR"	"2x27"	0	"normal4"	"normal"	"Geometric Segment"	25527.25	"glomerulus"	"normal"	14834
+"DSP-1001250007864-D-G05.dcc"	"directPCR"	"2x27"	0	"normal4"	"normal"	"Geometric Segment"	25759.32	"glomerulus"	"normal"	17420
+"DSP-1001250007864-D-G06.dcc"	"directPCR"	"2x27"	0	"normal4"	"normal"	"Geometric Segment"	14595.23	"glomerulus"	"normal"	18995
+"DSP-1001250007864-D-G07.dcc"	"directPCR"	"2x27"	0	"normal4"	"normal"	"Geometric Segment"	18690.46	"glomerulus"	"normal"	16986
+"DSP-1001250007864-D-G08.dcc"	"directPCR"	"2x27"	0	"normal4"	"normal"	"Geometric Segment"	21113.94	"glomerulus"	"abnormal"	18339
+"DSP-1001250007864-D-G09.dcc"	"directPCR"	"2x27"	0	"normal4"	"normal"	"Geometric Segment"	18368.83	"glomerulus"	"abnormal"	17522
+"DSP-1001250007864-D-G10.dcc"	"directPCR"	"2x27"	0	"normal4"	"normal"	"Geometric Segment"	17547.88	"glomerulus"	"abnormal"	14569
+"DSP-1001250007864-D-G11.dcc"	"directPCR"	"2x27"	0	"normal4"	"normal"	"Geometric Segment"	14923.97	"glomerulus"	"abnormal"	15489
+"DSP-1001250007864-D-G12.dcc"	"directPCR"	"2x27"	0	"normal4"	"normal"	"Geometric Segment"	14750.32	"glomerulus"	"abnormal"	19595
+"DSP-1001250007864-D-H01.dcc"	"directPCR"	"2x27"	0	"disease3"	"DKD"	"PanCK"	22152.11	"tubule"	"NA"	18798
+"DSP-1001250007864-D-H02.dcc"	"directPCR"	"2x27"	0	"disease3"	"DKD"	"neg"	71817.92	"tubule"	"NA"	16878
+"DSP-1001250007864-D-H03.dcc"	"directPCR"	"2x27"	0	"disease3"	"DKD"	"PanCK"	37316.7	"tubule"	"NA"	15260
+"DSP-1001250007864-D-H04.dcc"	"directPCR"	"2x27"	0	"disease3"	"DKD"	"neg"	102112.73	"tubule"	"NA"	14603
+"DSP-1001250007864-D-H05.dcc"	"directPCR"	"2x27"	0	"disease3"	"DKD"	"PanCK"	18398.69	"tubule"	"NA"	17662
+"DSP-1001250007864-D-H06.dcc"	"directPCR"	"2x27"	0	"disease3"	"DKD"	"neg"	85148.24	"tubule"	"NA"	16323
+"DSP-1001250007864-D-H07.dcc"	"directPCR"	"2x27"	0	"disease3"	"DKD"	"PanCK"	34778.48	"tubule"	"NA"	15824
+"DSP-1001250007864-D-H08.dcc"	"directPCR"	"2x27"	0	"disease3"	"DKD"	"neg"	87237.5	"tubule"	"NA"	18202
+"DSP-1001250007864-D-H09.dcc"	"directPCR"	"2x27"	0	"disease3"	"DKD"	"PanCK"	23435.74	"tubule"	"NA"	18754
+"DSP-1001250007864-D-H10.dcc"	"directPCR"	"2x27"	0	"disease3"	"DKD"	"neg"	78840.79	"tubule"	"NA"	17528
+"DSP-1001250007864-D-H11.dcc"	"directPCR"	"2x27"	0	"disease3"	"DKD"	"PanCK"	25414.45	"tubule"	"NA"	16275
+"DSP-1001250007864-D-H12.dcc"	"directPCR"	"2x27"	0	"disease3"	"DKD"	"neg"	102140.65	"tubule"	"NA"	14251
+"DSP-1001250007868-B-A02.dcc"	"directPCR"	"2x27"	0	"disease1B"	"DKD"	"Geometric Segment"	17343.44	"glomerulus"	"normal"	15535
+"DSP-1001250007868-B-A03.dcc"	"directPCR"	"2x27"	0	"disease1B"	"DKD"	"Geometric Segment"	27363.79	"glomerulus"	"normal"	15176
+"DSP-1001250007868-B-A04.dcc"	"directPCR"	"2x27"	0	"disease1B"	"DKD"	"Geometric Segment"	21838.18	"glomerulus"	"normal"	16669
+"DSP-1001250007868-B-A05.dcc"	"directPCR"	"2x27"	0	"disease1B"	"DKD"	"Geometric Segment"	29316.19	"glomerulus"	"normal"	17942
+"DSP-1001250007868-B-A06.dcc"	"directPCR"	"2x27"	0	"disease1B"	"DKD"	"Geometric Segment"	23376.82	"glomerulus"	"abnormal"	18989
+"DSP-1001250007868-B-A07.dcc"	"directPCR"	"2x27"	0	"disease1B"	"DKD"	"Geometric Segment"	34871.38	"glomerulus"	"abnormal"	15983
+"DSP-1001250007868-B-A08.dcc"	"directPCR"	"2x27"	0	"disease1B"	"DKD"	"Geometric Segment"	29638.5	"glomerulus"	"abnormal"	16789
+"DSP-1001250007868-B-A09.dcc"	"directPCR"	"2x27"	0	"disease1B"	"DKD"	"Geometric Segment"	24203.53	"glomerulus"	"abnormal"	17176
+"DSP-1001250007868-B-A10.dcc"	"directPCR"	"2x27"	0	"disease1B"	"DKD"	"Geometric Segment"	24850.07	"glomerulus"	"abnormal"	17456
+"DSP-1001250007868-B-A11.dcc"	"directPCR"	"2x27"	0	"disease1B"	"DKD"	"Geometric Segment"	22985.6	"glomerulus"	"abnormal"	18743
+"DSP-1001250007868-B-A12.dcc"	"directPCR"	"2x27"	0	"disease2B"	"DKD"	"WT1"	1091.47	"glomerulus"	"NA"	18067
+"DSP-1001250007868-B-B01.dcc"	"directPCR"	"2x27"	0	"disease2B"	"DKD"	"neg"	5083.24	"glomerulus"	"NA"	17901
+"DSP-1001250007868-B-B02.dcc"	"directPCR"	"2x27"	0	"disease2B"	"DKD"	"WT1"	273.87	"glomerulus"	"NA"	15682
+"DSP-1001250007868-B-B03.dcc"	"directPCR"	"2x27"	0	"disease2B"	"DKD"	"PanCK"	52.76	"glomerulus"	"NA"	19292
+"DSP-1001250007868-B-B04.dcc"	"directPCR"	"2x27"	0	"disease2B"	"DKD"	"neg"	10149.05	"glomerulus"	"NA"	16665
+"DSP-1001250007868-B-B05.dcc"	"directPCR"	"2x27"	0	"disease2B"	"DKD"	"WT1"	1123.44	"glomerulus"	"NA"	14451
+"DSP-1001250007868-B-B06.dcc"	"directPCR"	"2x27"	0	"disease2B"	"DKD"	"neg"	10559.93	"glomerulus"	"NA"	18844
+"DSP-1001250007868-B-B07.dcc"	"directPCR"	"2x27"	0	"disease2B"	"DKD"	"WT1"	209.12	"glomerulus"	"NA"	15531
+"DSP-1001250007868-B-B08.dcc"	"directPCR"	"2x27"	0	"disease2B"	"DKD"	"neg"	8141.33	"glomerulus"	"NA"	17891
+"DSP-1001250007868-B-B09.dcc"	"directPCR"	"2x27"	0	"disease2B"	"DKD"	"WT1"	384.82	"glomerulus"	"NA"	15854
+"DSP-1001250007868-B-B10.dcc"	"directPCR"	"2x27"	0	"disease2B"	"DKD"	"PanCK"	22.7	"glomerulus"	"NA"	14169
+"DSP-1001250007868-B-B11.dcc"	"directPCR"	"2x27"	0	"disease2B"	"DKD"	"neg"	16508.89	"glomerulus"	"NA"	17271
+"DSP-1001250007868-B-B12.dcc"	"directPCR"	"2x27"	0	"disease2B"	"DKD"	"WT1"	9.43	"glomerulus"	"NA"	14329
+"DSP-1001250007868-B-C01.dcc"	"directPCR"	"2x27"	0	"disease2B"	"DKD"	"PanCK"	11634.61	"tubule"	"NA"	19992
+"DSP-1001250007868-B-C02.dcc"	"directPCR"	"2x27"	0	"disease2B"	"DKD"	"neg"	74251.72	"tubule"	"NA"	16750
+"DSP-1001250007868-B-C03.dcc"	"directPCR"	"2x27"	0	"disease2B"	"DKD"	"PanCK"	17370.78	"tubule"	"NA"	15050
+"DSP-1001250007868-B-C04.dcc"	"directPCR"	"2x27"	0	"disease2B"	"DKD"	"neg"	81639.25	"tubule"	"NA"	18258
+"DSP-1001250007868-B-C05.dcc"	"directPCR"	"2x27"	0	"disease2B"	"DKD"	"PanCK"	10375.91	"tubule"	"NA"	14943
+"DSP-1001250007868-B-C06.dcc"	"directPCR"	"2x27"	0	"disease2B"	"DKD"	"neg"	73735.65	"tubule"	"NA"	17083
+"DSP-1001250007868-B-C07.dcc"	"directPCR"	"2x27"	0	"disease2B"	"DKD"	"PanCK"	6450.01	"tubule"	"NA"	15971
+"DSP-1001250007868-B-C08.dcc"	"directPCR"	"2x27"	0	"disease2B"	"DKD"	"neg"	68227.62	"tubule"	"NA"	18747
+"DSP-1001250007868-B-C09.dcc"	"directPCR"	"2x27"	0	"disease2B"	"DKD"	"PanCK"	12227.75	"tubule"	"NA"	16334
+"DSP-1001250007868-B-C10.dcc"	"directPCR"	"2x27"	0	"disease2B"	"DKD"	"neg"	78998.74	"tubule"	"NA"	15377
+"DSP-1001250007868-B-C11.dcc"	"directPCR"	"2x27"	0	"disease2B"	"DKD"	"PanCK"	10457.45	"tubule"	"NA"	17082
+"DSP-1001250007868-B-C12.dcc"	"directPCR"	"2x27"	0	"disease2B"	"DKD"	"neg"	46423.18	"tubule"	"NA"	15195
+"DSP-1001250007868-B-D01.dcc"	"directPCR"	"2x27"	0	"disease2B"	"DKD"	"Geometric Segment"	23068.74	"glomerulus"	"normal"	18978
+"DSP-1001250007868-B-D02.dcc"	"directPCR"	"2x27"	0	"disease2B"	"DKD"	"Geometric Segment"	23724.39	"glomerulus"	"normal"	17998
+"DSP-1001250007868-B-D03.dcc"	"directPCR"	"2x27"	0	"disease2B"	"DKD"	"Geometric Segment"	15825.42	"glomerulus"	"normal"	14388
+"DSP-1001250007868-B-D04.dcc"	"directPCR"	"2x27"	0	"disease2B"	"DKD"	"Geometric Segment"	23053.23	"glomerulus"	"normal"	16508
+"DSP-1001250007868-B-D05.dcc"	"directPCR"	"2x27"	0	"disease2B"	"DKD"	"Geometric Segment"	18840.2	"glomerulus"	"normal"	17656
+"DSP-1001250007868-B-D06.dcc"	"directPCR"	"2x27"	0	"disease2B"	"DKD"	"Geometric Segment"	15928.86	"glomerulus"	"normal"	15931
+"DSP-1001250007868-B-D07.dcc"	"directPCR"	"2x27"	0	"disease2B"	"DKD"	"Geometric Segment"	24020	"glomerulus"	"abnormal"	14433
+"DSP-1001250007868-B-D08.dcc"	"directPCR"	"2x27"	0	"disease2B"	"DKD"	"Geometric Segment"	30831.81	"glomerulus"	"abnormal"	15162
+"DSP-1001250007868-B-D09.dcc"	"directPCR"	"2x27"	0	"disease2B"	"DKD"	"Geometric Segment"	25241.13	"glomerulus"	"abnormal"	19546
+"DSP-1001250007868-B-D10.dcc"	"directPCR"	"2x27"	0	"disease2B"	"DKD"	"Geometric Segment"	20817.85	"glomerulus"	"abnormal"	16483
+"DSP-1001250007868-B-D11.dcc"	"directPCR"	"2x27"	0	"disease2B"	"DKD"	"Geometric Segment"	37763.21	"glomerulus"	"abnormal"	16419
+"DSP-1001250007868-B-D12.dcc"	"directPCR"	"2x27"	0	"disease2B"	"DKD"	"Geometric Segment"	35559.96	"glomerulus"	"abnormal"	14548
+"DSP-1002510007866-C-C09.dcc"	"directPCR"	"2x27"	0	"normal2B"	"normal"	"WT1"	1991.73	"glomerulus"	"NA"	15311
+"DSP-1002510007866-C-C10.dcc"	"directPCR"	"2x27"	0	"normal2B"	"normal"	"neg"	12809.38	"glomerulus"	"NA"	18686
+"DSP-1002510007866-C-C11.dcc"	"directPCR"	"2x27"	0	"normal2B"	"normal"	"WT1"	3312.62	"glomerulus"	"NA"	16638
+"DSP-1002510007866-C-C12.dcc"	"directPCR"	"2x27"	0	"normal2B"	"normal"	"neg"	15128.85	"glomerulus"	"NA"	14775
+"DSP-1002510007866-C-D01.dcc"	"directPCR"	"2x27"	0	"normal2B"	"normal"	"WT1"	4349.09	"glomerulus"	"NA"	14057
+"DSP-1002510007866-C-D02.dcc"	"directPCR"	"2x27"	0	"normal2B"	"normal"	"neg"	7944.05	"glomerulus"	"NA"	19390
+"DSP-1002510007866-C-D03.dcc"	"directPCR"	"2x27"	0	"normal2B"	"normal"	"WT1"	2978	"glomerulus"	"NA"	19827
+"DSP-1002510007866-C-D04.dcc"	"directPCR"	"2x27"	0	"normal2B"	"normal"	"neg"	15076.25	"glomerulus"	"NA"	17053
+"DSP-1002510007866-C-D05.dcc"	"directPCR"	"2x27"	0	"normal2B"	"normal"	"WT1"	3414.94	"glomerulus"	"NA"	17989
+"DSP-1002510007866-C-D06.dcc"	"directPCR"	"2x27"	0	"normal2B"	"normal"	"neg"	9172.69	"glomerulus"	"NA"	18303
+"DSP-1002510007866-C-D07.dcc"	"directPCR"	"2x27"	0	"normal2B"	"normal"	"WT1"	3503.03	"glomerulus"	"NA"	19009
+"DSP-1002510007866-C-D08.dcc"	"directPCR"	"2x27"	0	"normal2B"	"normal"	"PanCK"	27.5	"glomerulus"	"NA"	15405
+"DSP-1002510007866-C-D09.dcc"	"directPCR"	"2x27"	0	"normal2B"	"normal"	"neg"	18300.46	"glomerulus"	"NA"	18551
+"DSP-1002510007866-C-D10.dcc"	"directPCR"	"2x27"	0	"normal2B"	"normal"	"PanCK"	8313.84	"tubule"	"NA"	15036
+"DSP-1002510007866-C-D11.dcc"	"directPCR"	"2x27"	0	"normal2B"	"normal"	"neg"	96174.64	"tubule"	"NA"	14842
+"DSP-1002510007866-C-D12.dcc"	"directPCR"	"2x27"	0	"normal2B"	"normal"	"PanCK"	6364.16	"tubule"	"NA"	19591
+"DSP-1002510007866-C-E01.dcc"	"directPCR"	"2x27"	0	"normal2B"	"normal"	"neg"	60662.64	"tubule"	"NA"	15650
+"DSP-1002510007866-C-E02.dcc"	"directPCR"	"2x27"	0	"normal2B"	"normal"	"PanCK"	21252.87	"tubule"	"NA"	14816
+"DSP-1002510007866-C-E03.dcc"	"directPCR"	"2x27"	0	"normal2B"	"normal"	"neg"	85405.91	"tubule"	"NA"	17710
+"DSP-1002510007866-C-E04.dcc"	"directPCR"	"2x27"	0	"normal2B"	"normal"	"PanCK"	7349.79	"tubule"	"NA"	16532
+"DSP-1002510007866-C-E05.dcc"	"directPCR"	"2x27"	0	"normal2B"	"normal"	"neg"	66892.02	"tubule"	"NA"	17795
+"DSP-1002510007866-C-E06.dcc"	"directPCR"	"2x27"	0	"normal2B"	"normal"	"PanCK"	11468.34	"tubule"	"NA"	14811
+"DSP-1002510007866-C-E07.dcc"	"directPCR"	"2x27"	0	"normal2B"	"normal"	"neg"	118494.68	"tubule"	"NA"	17368
+"DSP-1002510007866-C-E08.dcc"	"directPCR"	"2x27"	0	"normal2B"	"normal"	"PanCK"	12457.97	"tubule"	"NA"	16482
+"DSP-1002510007866-C-E09.dcc"	"directPCR"	"2x27"	0	"normal2B"	"normal"	"neg"	160617.85	"tubule"	"NA"	15907
+"DSP-1002510007866-C-E10.dcc"	"directPCR"	"2x27"	0	"normal2B"	"normal"	"Geometric Segment"	24103.13	"glomerulus"	"normal"	16303
+"DSP-1002510007866-C-E11.dcc"	"directPCR"	"2x27"	0	"normal2B"	"normal"	"Geometric Segment"	25156.07	"glomerulus"	"normal"	14274
+"DSP-1002510007866-C-E12.dcc"	"directPCR"	"2x27"	0	"normal2B"	"normal"	"Geometric Segment"	22744.19	"glomerulus"	"normal"	15585
+"DSP-1002510007866-C-F01.dcc"	"directPCR"	"2x27"	0	"normal2B"	"normal"	"Geometric Segment"	25428.34	"glomerulus"	"normal"	19903
+"DSP-1002510007866-C-F02.dcc"	"directPCR"	"2x27"	0	"normal2B"	"normal"	"Geometric Segment"	23616.15	"glomerulus"	"normal"	15985
+"DSP-1002510007866-C-F03.dcc"	"directPCR"	"2x27"	0	"normal2B"	"normal"	"Geometric Segment"	19466.75	"glomerulus"	"normal"	15718
+"DSP-1002510007866-C-F04.dcc"	"directPCR"	"2x27"	0	"normal2B"	"normal"	"Geometric Segment"	26072	"glomerulus"	"abnormal"	15551
+"DSP-1002510007866-C-F05.dcc"	"directPCR"	"2x27"	0	"normal2B"	"normal"	"Geometric Segment"	17504.12	"glomerulus"	"abnormal"	14029
+"DSP-1002510007866-C-F06.dcc"	"directPCR"	"2x27"	0	"normal2B"	"normal"	"Geometric Segment"	14347.54	"glomerulus"	"abnormal"	19048
+"DSP-1002510007866-C-F07.dcc"	"directPCR"	"2x27"	0	"normal2B"	"normal"	"Geometric Segment"	18453.14	"glomerulus"	"abnormal"	15210
+"DSP-1002510007866-C-F08.dcc"	"directPCR"	"2x27"	0	"disease1B"	"DKD"	"WT1"	3799.6	"glomerulus"	"NA"	19109
+"DSP-1002510007866-C-F09.dcc"	"directPCR"	"2x27"	0	"disease1B"	"DKD"	"neg"	26172.88	"glomerulus"	"NA"	15376
+"DSP-1002510007866-C-F10.dcc"	"directPCR"	"2x27"	0	"disease1B"	"DKD"	"WT1"	1719.94	"glomerulus"	"NA"	16284
+"DSP-1002510007866-C-F11.dcc"	"directPCR"	"2x27"	0	"disease1B"	"DKD"	"neg"	13256.55	"glomerulus"	"NA"	17971
+"DSP-1002510007866-C-F12.dcc"	"directPCR"	"2x27"	0	"disease1B"	"DKD"	"WT1"	2301.89	"glomerulus"	"NA"	14721
+"DSP-1002510007866-C-G01.dcc"	"directPCR"	"2x27"	0	"disease1B"	"DKD"	"neg"	15630.22	"glomerulus"	"NA"	17604
+"DSP-1002510007866-C-G02.dcc"	"directPCR"	"2x27"	0	"disease1B"	"DKD"	"WT1"	5282.12	"glomerulus"	"NA"	14743
+"DSP-1002510007866-C-G03.dcc"	"directPCR"	"2x27"	0	"disease1B"	"DKD"	"PanCK"	19.98	"glomerulus"	"NA"	18236
+"DSP-1002510007866-C-G04.dcc"	"directPCR"	"2x27"	0	"disease1B"	"DKD"	"neg"	4179.94	"glomerulus"	"NA"	16683
+"DSP-1002510007866-C-G05.dcc"	"directPCR"	"2x27"	0	"disease1B"	"DKD"	"WT1"	8.15	"glomerulus"	"NA"	16946
+"DSP-1002510007866-C-G06.dcc"	"directPCR"	"2x27"	0	"disease1B"	"DKD"	"neg"	19068.82	"glomerulus"	"NA"	16136
+"DSP-1002510007866-C-G07.dcc"	"directPCR"	"2x27"	0	"disease1B"	"DKD"	"WT1"	3236.52	"glomerulus"	"NA"	14732
+"DSP-1002510007866-C-G08.dcc"	"directPCR"	"2x27"	0	"disease1B"	"DKD"	"neg"	8186.42	"glomerulus"	"NA"	14553
+"DSP-1002510007866-C-G09.dcc"	"directPCR"	"2x27"	0	"disease1B"	"DKD"	"WT1"	15.99	"tubule"	"NA"	16319
+"DSP-1002510007866-C-G10.dcc"	"directPCR"	"2x27"	0	"disease1B"	"DKD"	"PanCK"	11510.39	"tubule"	"NA"	14657
+"DSP-1002510007866-C-G11.dcc"	"directPCR"	"2x27"	0	"disease1B"	"DKD"	"neg"	61035.47	"tubule"	"NA"	18532
+"DSP-1002510007866-C-G12.dcc"	"directPCR"	"2x27"	0	"disease1B"	"DKD"	"PanCK"	10672.48	"tubule"	"NA"	16333
+"DSP-1002510007866-C-H01.dcc"	"directPCR"	"2x27"	0	"disease1B"	"DKD"	"neg"	70102.8	"tubule"	"NA"	19997
+"DSP-1002510007866-C-H02.dcc"	"directPCR"	"2x27"	0	"disease1B"	"DKD"	"WT1"	52.12	"tubule"	"NA"	17576
+"DSP-1002510007866-C-H03.dcc"	"directPCR"	"2x27"	0	"disease1B"	"DKD"	"PanCK"	15331.41	"tubule"	"NA"	19282
+"DSP-1002510007866-C-H04.dcc"	"directPCR"	"2x27"	0	"disease1B"	"DKD"	"neg"	120199.59	"tubule"	"NA"	16820
+"DSP-1002510007866-C-H05.dcc"	"directPCR"	"2x27"	0	"disease1B"	"DKD"	"PanCK"	24825.61	"tubule"	"NA"	14435
+"DSP-1002510007866-C-H06.dcc"	"directPCR"	"2x27"	0	"disease1B"	"DKD"	"neg"	184639.44	"tubule"	"NA"	16474
+"DSP-1002510007866-C-H07.dcc"	"directPCR"	"2x27"	0	"disease1B"	"DKD"	"PanCK"	8595.7	"tubule"	"NA"	16447
+"DSP-1002510007866-C-H08.dcc"	"directPCR"	"2x27"	0	"disease1B"	"DKD"	"neg"	67263.41	"tubule"	"NA"	14416
+"DSP-1002510007866-C-H09.dcc"	"directPCR"	"2x27"	0	"disease1B"	"DKD"	"PanCK"	9549.2	"tubule"	"NA"	15899
+"DSP-1002510007866-C-H10.dcc"	"directPCR"	"2x27"	0	"disease1B"	"DKD"	"neg"	67032.55	"tubule"	"NA"	19722
+"DSP-1002510007866-C-H11.dcc"	"directPCR"	"2x27"	0	"disease1B"	"DKD"	"Geometric Segment"	17039.36	"glomerulus"	"normal"	19577
+"DSP-1002510007866-C-H12.dcc"	"directPCR"	"2x27"	0	"disease1B"	"DKD"	"Geometric Segment"	21155.03	"glomerulus"	"niormal"	17678
