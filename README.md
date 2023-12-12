@@ -1,1 +1,1 @@
-# Bayesian-Multinomial-Regression-Kidney-Disease
+# Bayesian-Logistic-Regression-Kidney-Disease
