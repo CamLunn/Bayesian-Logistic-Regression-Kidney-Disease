@@ -1,0 +1,900 @@
+---
+title: "NanoString Kidney Vignette"
+output: html_document
+date: "2023-11-27"
+---
+
+
+NOTE: this R Markdown is based off of the Nanostring Technology's publicly available vignette, seen here: https://bioconductor.org/packages/devel/workflows/vignettes/GeoMxWorkflows/inst/doc/GeomxTools_RNA-NGS_Analysis.html#8_Visualizing_DE_Genes
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+if (!require("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+# The following initializes most up to date version of Bioc
+# BiocManager::install()
+
+# BiocManager::install("NanoStringNCTools")
+# BiocManager::install("GeomxTools")
+# BiocManager::install("GeoDiff")
+ # BiocManager::install("GeoMxWorkflows")
+# BiocManager::install("standR")
+
+library(NanoStringNCTools)
+library(GeomxTools)
+library(GeoMxWorkflows)
+library(GeoDiff)
+library(NanoStringNCTools)
+library(GeomxTools)
+library(GeoMxWorkflows)
+library(openxlsx)
+library(dplyr)
+library(ggforce)
+library(ggplot2)
+library(knitr)
+library(scales) # for percent
+library(reshape2)  # for melt
+library(cowplot)   # for plot_grid
+library(kableExtra)
+library(stringr)
+library(standR)
+library(SpatialExperiment)
+library(limma)
+library(edgeR)
+library(tidyverse)
+library(vissE)
+library(GSEABase)
+library(msigdb)
+library(ggalluvial)
+
+# if(packageVersion("GeomxTools") < "2.1" & 
+#    packageVersion("GeoMxWorkflows") >= "1.0.1"){
+#     stop("GeomxTools and Workflow versions do not match. Please use the same version. 
+#     This workflow is meant to be used with most current version of packages. 
+#     If you are using an older version of Bioconductor please reinstall GeoMxWorkflows and use vignette(GeoMxWorkflows) instead")
+# }
+# 
+# if(packageVersion("GeomxTools") > "2.1" & 
+#    packageVersion("GeoMxWorkflows") <= "1.0.1"){
+#     stop("GeomxTools and Workflow versions do not match. 
+#          Please use the same version, see install instructions above.")
+    
+    # to remove current package version
+        # remove.packages("GeomxTools")
+        # remove.packages("GeoMxWorkflows")
+    # see install instructions above 
+# }
+# 
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+setwd("/slipstream_old/home/cameronlunn/nanostring_testspace/GeoMx_kidney_vignette")
+data(kidney)
+demoData <-updateGeoMxSet(kidney)
+# demoData<- updateGeoMxSet(kidney)
+assayData(demoData)[["exprs"]][1:5, 1:3] %>%
+  kable()%>%
+  kable_styling(bootstrap_options = c("striped", "hover"))
+
+
+typeof(demoData)
+library(knitr)
+pkcs <- annotation(demoData)
+modules <- gsub(".pkc", "", pkcs)
+kable(data.frame(PKCs = pkcs, modules = modules))
+
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+demoData <- shiftCountsOne(demoData, useDALogic = TRUE)
+
+```
+
+
+```{r segment qc}
+
+# Default QC cutoffs are commented in () adjacent to the respective parameters
+# study-specific values were selected after visualizing the QC results in more
+# detail below
+QC_params <-
+    list(minSegmentReads = 1000, # Minimum number of reads (1000)
+         percentTrimmed = 80,    # Minimum % of reads trimmed (80%)
+         percentStitched = 80,   # Minimum % of reads stitched (80%)
+         percentAligned = 75,    # Minimum % of reads aligned (80%)
+         percentSaturation = 50, # Minimum sequencing saturation (50%)
+         minNegativeCount = 1,   # Minimum negative control counts (10)
+         maxNTCCount = 9000,     # Maximum counts observed in NTC well (1000)
+         minNuclei = 20,         # Minimum # of nuclei estimated (100)
+         minArea = 1000)         # Minimum segment area (5000)
+demoData <-
+    setSegmentQCFlags(demoData, 
+                      qcCutoffs = QC_params)        
+
+# Collate QC Results
+QCResults <- protocolData(demoData)[["QCFlags"]]
+flag_columns <- colnames(QCResults)
+QC_Summary <- data.frame(Pass = colSums(!QCResults[, flag_columns]),
+                         Warning = colSums(QCResults[, flag_columns]))
+QCResults$QCStatus <- apply(QCResults, 1L, function(x) {
+    ifelse(sum(x) == 0L, "PASS", "WARNING")
+})
+QC_Summary["TOTAL FLAGS", ] <-
+    c(sum(QCResults[, "QCStatus"] == "PASS"),
+      sum(QCResults[, "QCStatus"] == "WARNING"))
+
+```
+
+
+
+```{r vis segment qc}
+library(ggplot2)
+
+col_by <- "segment"
+
+# Graphical summaries of QC statistics plot function
+QC_histogram <- function(assay_data = NULL,
+                         annotation = NULL,
+                         fill_by = NULL,
+                         thr = NULL,
+                         scale_trans = NULL) {
+    plt <- ggplot(assay_data,
+                  aes_string(x = paste0("unlist(`", annotation, "`)"),
+                             fill = fill_by)) +
+        geom_histogram(bins = 50) +
+        geom_vline(xintercept = thr, lty = "dashed", color = "black") +
+        theme_bw() + guides(fill = "none") +
+        facet_wrap(as.formula(paste("~", fill_by)), nrow = 4) +
+        labs(x = annotation, y = "Segments, #", title = annotation)
+    if(!is.null(scale_trans)) {
+        plt <- plt +
+            scale_x_continuous(trans = scale_trans)
+    }
+    plt
+}
+
+QC_histogram(sData(demoData), "Trimmed (%)", col_by, 80)
+QC_histogram(sData(demoData), "Stitched (%)", col_by, 80)
+QC_histogram(sData(demoData), "Aligned (%)", col_by, 75)
+QC_histogram(sData(demoData), "Saturated (%)", col_by, 50) +
+    labs(title = "Sequencing Saturation (%)",
+         x = "Sequencing Saturation (%)")
+QC_histogram(sData(demoData), "area", col_by, 1000, scale_trans = "log10")
+QC_histogram(sData(demoData), "nuclei", col_by, 20)
+
+# calculate the negative geometric means for each module
+negativeGeoMeans <- 
+    esBy(negativeControlSubset(demoData), 
+         GROUP = "Module", 
+         FUN = function(x) { 
+             assayDataApply(x, MARGIN = 2, FUN = ngeoMean, elt = "exprs") 
+         }) 
+protocolData(demoData)[["NegGeoMean"]] <- negativeGeoMeans
+
+# explicitly copy the Negative geoMeans from sData to pData
+negCols <- paste0("NegGeoMean_", modules)
+pData(demoData)[, negCols] <- sData(demoData)[["NegGeoMean"]]
+for(ann in negCols) {
+    plt <- QC_histogram(pData(demoData), ann, col_by, 2, scale_trans = "log10")
+    print(plt)
+}
+
+```
+
+```{r flagging}
+
+# detatch neg_geomean columns ahead of aggregateCounts call
+pData(demoData) <- pData(demoData)[, !colnames(pData(demoData)) %in% negCols]
+
+# show all NTC values, Freq = # of Segments with a given NTC count:
+kable(table(NTC_Count = sData(demoData)$NTC),
+      col.names = c("NTC Count", "# of Segments"))
+
+kable(QC_Summary, caption = "QC Summary Table for each Segment")
+
+```
+
+
+
+
+```{r  remove flagged segments}
+
+
+demoData <- demoData[, QCResults$QCStatus == "PASS"]
+
+# Subsetting our dataset has removed samples which did not pass QC
+dim(demoData)
+#> Features  Samples 
+#>    18642      229
+
+########## Check the remaining ROI's after QC:
+# read.table("data/kidney_countdata.txt", header = T, row.names = 1)
+# sample_names <- colnames(assayData(demoData)[["exprs"]])
+
+
+```
+
+
+
+```{r Set Probe QC Flags}
+
+# Generally keep the qcCutoffs parameters unchanged. Set removeLocalOutliers to 
+# FALSE if you do not want to remove local outliers
+demoData <- setBioProbeQCFlags(demoData, 
+                               qcCutoffs = list(minProbeRatio = 0.1,
+                                                percentFailGrubbs = 20), 
+                               removeLocalOutliers = TRUE)
+
+ProbeQCResults <- fData(demoData)[["QCFlags"]]
+
+# Define QC table for Probe QC
+qc_df <- data.frame(Passed = sum(rowSums(ProbeQCResults[, -1]) == 0),
+                    Global = sum(ProbeQCResults$GlobalGrubbsOutlier),
+                    Local = sum(rowSums(ProbeQCResults[, -2:-1]) > 0
+                                & !ProbeQCResults$GlobalGrubbsOutlier))
+
+
+```
+
+
+
+
+
+```{r Exclude Outlier Probes}
+#Subset object to exclude all that did not pass Ratio & Global testing
+ProbeQCPassed <- 
+    subset(demoData, 
+           fData(demoData)[["QCFlags"]][,c("LowProbeRatio")] == FALSE &
+               fData(demoData)[["QCFlags"]][,c("GlobalGrubbsOutlier")] == FALSE)
+dim(ProbeQCPassed)
+#> Features  Samples 
+#>    18641      229
+demoData <- ProbeQCPassed 
+
+```
+
+
+```{r Create Gene-level Count Data}
+
+
+# Check how many unique targets the object has
+length(unique(featureData(demoData)[["TargetName"]]))
+#> [1] 18504
+
+# collapse to targets
+target_demoData <- aggregateCounts(demoData)
+dim(target_demoData)
+#> Features  Samples 
+#>    18504      229
+exprs(target_demoData)[1:5, 1:2]
+
+```
+
+
+
+```{r Limit of Quantification}
+
+# Define LOQ SD threshold and minimum value
+cutoff <- 2
+minLOQ <- 2
+
+# Calculate LOQ per module tested
+LOQ <- data.frame(row.names = colnames(target_demoData))
+for(module in modules) {
+    vars <- paste0(c("NegGeoMean_", "NegGeoSD_"),
+                   module)
+    if(all(vars[1:2] %in% colnames(pData(target_demoData)))) {
+        LOQ[, module] <-
+            pmax(minLOQ,
+                 pData(target_demoData)[, vars[1]] * 
+                     pData(target_demoData)[, vars[2]] ^ cutoff)
+    }
+}
+pData(target_demoData)$LOQ <- LOQ
+
+
+```
+
+
+```{r Filtering}
+LOQ_Mat <- c()
+for(module in modules) {
+    ind <- fData(target_demoData)$Module == module
+    Mat_i <- t(esApply(target_demoData[ind, ], MARGIN = 1,
+                       FUN = function(x) {
+                           x > LOQ[, module]
+                       }))
+    LOQ_Mat <- rbind(LOQ_Mat, Mat_i)
+}
+# ensure ordering since this is stored outside of the geomxSet
+LOQ_Mat <- LOQ_Mat[fData(target_demoData)$TargetName, ]
+
+
+```
+
+
+```{r Segment Gene Detection}
+
+# Save detection rate information to pheno data
+pData(target_demoData)$GenesDetected <- 
+    colSums(LOQ_Mat, na.rm = TRUE)
+pData(target_demoData)$GeneDetectionRate <-
+    pData(target_demoData)$GenesDetected / nrow(target_demoData)
+
+# Determine detection thresholds: 1%, 5%, 10%, 15%, >15%
+pData(target_demoData)$DetectionThreshold <- 
+    cut(pData(target_demoData)$GeneDetectionRate,
+        breaks = c(0, 0.01, 0.05, 0.1, 0.15, 1),
+        labels = c("<1%", "1-5%", "5-10%", "10-15%", ">15%"))
+
+# stacked bar plot of different cut points (1%, 5%, 10%, 15%)
+ggplot(pData(target_demoData),
+       aes(x = DetectionThreshold)) +
+    geom_bar(aes(fill = region)) +
+    geom_text(stat = "count", aes(label = ..count..), vjust = -0.5) +
+    theme_bw() +
+    scale_y_continuous(expand = expansion(mult = c(0, 0.1))) +
+    labs(x = "Gene Detection Rate",
+         y = "Segments, #",
+         fill = "Segment Type")
+#> Warning: The dot-dot notation (`..count..`) was deprecated in ggplot2 3.4.0.
+#> ℹ Please use `after_stat(count)` instead.
+#> This warning is displayed once every 8 hours.
+#> Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+#> generated.
+
+```
+
+
+
+```{r Segment Gene Detection cont}
+
+# cut percent genes detected at 1, 5, 10, 15
+kable(table(pData(target_demoData)$DetectionThreshold,
+            pData(target_demoData)$class))
+
+
+target_demoData <-
+    target_demoData[, pData(target_demoData)$GeneDetectionRate >= .1]
+
+dim(target_demoData)
+#> Features  Samples 
+#>    18504      221
+
+
+```
+
+
+
+```{r Gene Detection Rate}
+
+library(scales) # for percent
+
+# Calculate detection rate:
+LOQ_Mat <- LOQ_Mat[, colnames(target_demoData)]
+fData(target_demoData)$DetectedSegments <- rowSums(LOQ_Mat, na.rm = TRUE)
+fData(target_demoData)$DetectionRate <-
+    fData(target_demoData)$DetectedSegments / nrow(pData(target_demoData))
+
+# Gene of interest detection table
+goi <- c("PDCD1", "CD274", "IFNG", "CD8A", "CD68", "EPCAM",
+         "KRT18", "NPHS1", "NPHS2", "CALB1", "CLDN8")
+goi_df <- data.frame(
+    Gene = goi,
+    Number = fData(target_demoData)[goi, "DetectedSegments"],
+    DetectionRate = percent(fData(target_demoData)[goi, "DetectionRate"]))
+
+
+
+```
+
+
+
+```{r Gene Filtering}
+
+# Plot detection rate:
+plot_detect <- data.frame(Freq = c(1, 5, 10, 20, 30, 50))
+plot_detect$Number <-
+    unlist(lapply(c(0.01, 0.05, 0.1, 0.2, 0.3, 0.5),
+                  function(x) {sum(fData(target_demoData)$DetectionRate >= x)}))
+plot_detect$Rate <- plot_detect$Number / nrow(fData(target_demoData))
+rownames(plot_detect) <- plot_detect$Freq
+
+ggplot(plot_detect, aes(x = as.factor(Freq), y = Rate, fill = Rate)) +
+    geom_bar(stat = "identity") +
+    geom_text(aes(label = formatC(Number, format = "d", big.mark = ",")),
+              vjust = 1.6, color = "black", size = 4) +
+    scale_fill_gradient2(low = "orange2", mid = "lightblue",
+                         high = "dodgerblue3", midpoint = 0.65,
+                         limits = c(0,1),
+                         labels = scales::percent) +
+    theme_bw() +
+    scale_y_continuous(labels = scales::percent, limits = c(0,1),
+                       expand = expansion(mult = c(0, 0))) +
+    labs(x = "% of Segments",
+         y = "Genes Detected, % of Panel > LOQ")
+
+
+# Subset to target genes detected in at least 10% of the samples.
+#   Also manually include the negative control probe, for downstream use
+negativeProbefData <- subset(fData(target_demoData), CodeClass == "Negative")
+neg_probes <- unique(negativeProbefData$TargetName)
+target_demoData <- 
+    target_demoData[fData(target_demoData)$DetectionRate >= 0.1 |
+                        fData(target_demoData)$TargetName %in% neg_probes, ]
+dim(target_demoData)
+#> Features  Samples 
+#>    10131      221
+
+# retain only detected genes of interest
+goi <- goi[goi %in% rownames(target_demoData)]
+goi
+
+```
+
+
+## Normalizing
+
+
+```{r Normalization}
+
+library(reshape2)  # for melt
+library(cowplot)   # for plot_grid
+
+# Graph Q3 value vs negGeoMean of Negatives
+ann_of_interest <- "region"
+Stat_data <- 
+    data.frame(row.names = colnames(exprs(target_demoData)),
+               Segment = colnames(exprs(target_demoData)),
+               Annotation = pData(target_demoData)[, ann_of_interest],
+               Q3 = unlist(apply(exprs(target_demoData), 2,
+                                 quantile, 0.75, na.rm = TRUE)),
+               NegProbe = exprs(target_demoData)[neg_probes, ])
+Stat_data_m <- melt(Stat_data, measure.vars = c("Q3", "NegProbe"),
+                    variable.name = "Statistic", value.name = "Value")
+
+plt1 <- ggplot(Stat_data_m,
+               aes(x = Value, fill = Statistic)) +
+    geom_histogram(bins = 40) + theme_bw() +
+    scale_x_continuous(trans = "log2") +
+    facet_wrap(~Annotation, nrow = 1) + 
+    scale_fill_brewer(palette = 3, type = "qual") +
+    labs(x = "Counts", y = "Segments, #")
+
+plt2 <- ggplot(Stat_data,
+               aes(x = NegProbe, y = Q3, color = Annotation)) +
+    geom_abline(intercept = 0, slope = 1, lty = "dashed", color = "darkgray") +
+    geom_point() + guides(color = "none") + theme_bw() +
+    scale_x_continuous(trans = "log2") + 
+    scale_y_continuous(trans = "log2") +
+    theme(aspect.ratio = 1) +
+    labs(x = "Negative Probe GeoMean, Counts", y = "Q3 Value, Counts")
+
+plt3 <- ggplot(Stat_data,
+               aes(x = NegProbe, y = Q3 / NegProbe, color = Annotation)) +
+    geom_hline(yintercept = 1, lty = "dashed", color = "darkgray") +
+    geom_point() + theme_bw() +
+    scale_x_continuous(trans = "log2") + 
+    scale_y_continuous(trans = "log2") +
+    theme(aspect.ratio = 1) +
+    labs(x = "Negative Probe GeoMean, Counts", y = "Q3/NegProbe Value, Counts")
+
+btm_row <- plot_grid(plt2, plt3, nrow = 1, labels = c("B", ""),
+                     rel_widths = c(0.43,0.57))
+plot_grid(plt1, btm_row, ncol = 1, labels = c("A", ""))
+
+```
+
+```{r Types of normalizing}
+
+# Q3 norm (75th percentile) for WTA/CTA  with or without custom spike-ins
+target_demoData <- normalize(target_demoData ,
+                             norm_method = "quant", 
+                             desiredQuantile = .75,
+                             toElt = "q_norm")
+
+# Background normalization for WTA/CTA without custom spike-in
+target_demoData <- normalize(target_demoData ,
+                             norm_method = "neg", 
+                             fromElt = "exprs",
+                             toElt = "neg_norm")
+
+
+# visualize the first 10 segments with each normalization method
+boxplot(exprs(target_demoData)[,1:10],
+        col = "#9EDAE5", main = "Raw Counts",
+        log = "y", names = 1:10, xlab = "Segment",
+        ylab = "Counts, Raw")
+
+boxplot(assayDataElement(target_demoData[,1:10], elt = "q_norm"),
+        col = "#2CA02C", main = "Q3 Norm Counts",
+        log = "y", names = 1:10, xlab = "Segment",
+        ylab = "Counts, Q3 Normalized")
+
+
+boxplot(assayDataElement(target_demoData[,1:10], elt = "neg_norm"),
+        col = "#FF7F0E", main = "Neg Norm Counts",
+        log = "y", names = 1:10, xlab = "Segment",
+        ylab = "Counts, Neg. Normalized")
+
+```
+
+
+
+# Unsupervised
+
+
+```{r umap}
+
+library(umap)
+library(Rtsne)
+
+# update defaults for umap to contain a stable random_state (seed)
+custom_umap <- umap::umap.defaults
+custom_umap$random_state <- 42
+# run UMAP
+umap_out <-
+    umap(t(log2(assayDataElement(target_demoData , elt = "q_norm"))),  
+         config = custom_umap)
+pData(target_demoData)[, c("UMAP1", "UMAP2")] <- umap_out$layout[, c(1,2)]
+ggplot(pData(target_demoData),
+       aes(x = UMAP1, y = UMAP2, color = region, shape = class)) +
+    geom_point(size = 3) +
+    theme_bw()
+
+# run tSNE
+set.seed(42) # set the seed for tSNE as well
+tsne_out <-
+    Rtsne(t(log2(assayDataElement(target_demoData , elt = "q_norm"))),
+          perplexity = ncol(target_demoData)*.15)
+pData(target_demoData)[, c("tSNE1", "tSNE2")] <- tsne_out$Y[, c(1,2)]
+ggplot(pData(target_demoData),
+       aes(x = tSNE1, y = tSNE2, color = region, shape = class)) +
+    geom_point(size = 3) +
+    theme_bw()
+
+```
+
+
+
+```{r heamap}
+
+library(pheatmap)  # for pheatmap
+# create a log2 transform of the data for analysis
+assayDataElement(object = target_demoData, elt = "log_q") <-
+    assayDataApply(target_demoData, 2, FUN = log, base = 2, elt = "q_norm")
+
+# create CV function
+calc_CV <- function(x) {sd(x) / mean(x)}
+CV_dat <- assayDataApply(target_demoData,
+                         elt = "log_q", MARGIN = 1, calc_CV)
+# show the highest CD genes and their CV values
+sort(CV_dat, decreasing = TRUE)[1:5]
+#>   CAMK2N1    AKR1C1      AQP2     GDF15       REN 
+#> 0.5886006 0.5114973 0.4607206 0.4196469 0.4193216
+
+# Identify genes in the top 3rd of the CV values
+GOI <- names(CV_dat)[CV_dat > quantile(CV_dat, 0.8)]
+pheatmap(assayDataElement(target_demoData[GOI, ], elt = "log_q"),
+         scale = "row", 
+         show_rownames = FALSE, show_colnames = FALSE,
+         border_color = NA,
+         clustering_method = "average",
+         clustering_distance_rows = "correlation",
+         clustering_distance_cols = "correlation",
+         breaks = seq(-3, 3, 0.05),
+         color = colorRampPalette(c("purple3", "black", "yellow2"))(120),
+         annotation_col = 
+             pData(target_demoData)[, c("class", "segment", "region")])
+
+```
+
+
+
+
+
+
+
+
+
+
+
+# Supervised Analysis
+
+```{r within slide}
+
+# convert test variables to factors
+pData(target_demoData)$testRegion <- 
+    factor(pData(target_demoData)$region, c("glomerulus", "tubule"))
+pData(target_demoData)[["slide"]] <- 
+    factor(pData(target_demoData)[["slide name"]])
+assayDataElement(object = target_demoData, elt = "log_q") <-
+    assayDataApply(target_demoData, 2, FUN = log, base = 2, elt = "q_norm")
+
+# run LMM:
+# formula follows conventions defined by the lme4 package
+results <- c()
+for(status in c("DKD", "normal")) {
+    ind <- pData(target_demoData)$class == status
+    mixedOutmc <-
+        mixedModelDE(target_demoData[, ind],
+                     elt = "log_q",
+                     modelFormula = ~ testRegion + (1 + testRegion | slide),
+                     groupVar = "testRegion",
+                     nCores = parallel::detectCores(),
+                     multiCore = FALSE)
+    
+    # format results as data.frame
+    r_test <- do.call(rbind, mixedOutmc["lsmeans", ])
+    tests <- rownames(r_test)
+    r_test <- as.data.frame(r_test)
+    r_test$Contrast <- tests
+    
+    # use lapply in case you have multiple levels of your test factor to
+    # correctly associate gene name with it's row in the results table
+    r_test$Gene <- 
+        unlist(lapply(colnames(mixedOutmc),
+                      rep, nrow(mixedOutmc["lsmeans", ][[1]])))
+    r_test$Subset <- status
+    r_test$FDR <- p.adjust(r_test$`Pr(>|t|)`, method = "fdr")
+    r_test <- r_test[, c("Gene", "Subset", "Contrast", "Estimate", 
+                         "Pr(>|t|)", "FDR")]
+    results <- rbind(results, r_test)
+}
+
+```
+
+
+
+
+
+
+```{r Between Slide Analysis}
+# convert test variables to factors
+pData(target_demoData)$testClass <-
+    factor(pData(target_demoData)$class, c("normal", "DKD"))
+
+# run LMM:
+# formula follows conventions defined by the lme4 package
+results2 <- c()
+for(region in c("glomerulus", "tubule")) {
+    ind <- pData(target_demoData)$region == region
+    mixedOutmc <-
+        mixedModelDE(target_demoData[, ind],
+                     elt = "log_q",
+                     modelFormula = ~ testClass + (1 | slide),
+                     groupVar = "testClass",
+                     nCores = parallel::detectCores(),
+                     multiCore = FALSE)
+    
+    # format results as data.frame
+    r_test <- do.call(rbind, mixedOutmc["lsmeans", ])
+    tests <- rownames(r_test)
+    r_test <- as.data.frame(r_test)
+    r_test$Contrast <- tests
+    
+    # use lapply in case you have multiple levels of your test factor to
+    # correctly associate gene name with it's row in the results table
+    r_test$Gene <- 
+        unlist(lapply(colnames(mixedOutmc),
+                      rep, nrow(mixedOutmc["lsmeans", ][[1]])))
+    r_test$Subset <- region
+    r_test$FDR <- p.adjust(r_test$`Pr(>|t|)`, method = "fdr")
+    r_test <- r_test[, c("Gene", "Subset", "Contrast", "Estimate", 
+                         "Pr(>|t|)", "FDR")]
+    results2 <- rbind(results2, r_test)
+}
+
+
+
+
+```
+
+
+```{r hiearchical grouping}
+
+genes <- fData(demoData)[c("TargetName", "RTS_ID")]
+
+genes$Gene <- genes$TargetName
+
+results_IDs <- merge(results2, genes, by = "Gene")
+
+results_IDs <- merge()
+
+write.csv(results2, file = "/slipstream_old/home/cameronlunn/nanostring_testspace/GeoMx_kidney_vignette/LMM_results.csv")
+
+
+DEGs_FDR.05_L2FC.5 <- results2%>% 
+  arrange(`Pr(>|t|)`) %>%
+  filter(FDR < 0.2)
+
+# write.csv(DEGs_FDR.05_L2FC.5, file = "/slipstream_old/home/cameronlunn/nanostring_testspace/GeoMx_kidney_vignette/DEGs_FDR.05_L2FC.5.csv")
+
+
+read.csv("DEGs_FDR.05_L2FC.5.csv")
+
+DEGs_FDR.05_L2FC.5 <- merge(DEGs_FDR.05_L2FC.5, genes, by = "Gene")
+
+# write.csv(DEGs_FDR.05_L2FC.5, file = "/slipstream_old/home/cameronlunn/nanostring_testspace/GeoMx_kidney_vignette/DEGs_FDR.05_L2FC.5.csv")
+
+```
+
+
+
+
+
+
+
+
+```{r Between Slide Analysis aggregate}
+# convert test variables to factors
+pData(target_demoData)$testClass <-
+    factor(pData(target_demoData)$class, c("normal", "DKD"))
+
+# run LMM:
+# formula follows conventions defined by the lme4 package
+results3 <- c()
+    mixedOutmc <-
+        mixedModelDE(target_demoData,
+                     elt = "log_q",
+                     modelFormula = ~ testClass + (1 | slide),
+                     groupVar = "testClass",
+                     nCores = parallel::detectCores(),
+                     multiCore = FALSE)
+    
+    # format results as data.frame
+    r_test <- do.call(rbind, mixedOutmc["lsmeans", ])
+    tests <- rownames(r_test)
+    r_test <- as.data.frame(r_test)
+    r_test$Contrast <- tests
+    
+    # use lapply in case you have multiple levels of your test factor to
+    # correctly associate gene name with it's row in the results table
+    r_test$Gene <- 
+        unlist(lapply(colnames(mixedOutmc),
+                      rep, nrow(mixedOutmc["lsmeans", ][[1]])))
+    # r_test$Subset <- region
+    r_test$FDR <- p.adjust(r_test$`Pr(>|t|)`, method = "fdr")
+    r_test <- r_test[, c("Gene", "Contrast", "Estimate", 
+                         "Pr(>|t|)", "FDR")]
+    results3 <- rbind(results3, r_test)
+
+
+
+```
+
+
+
+
+# Results here are used for our comparisons
+
+```{r, fig.height=7, fig.width=11}
+results <- results3
+
+library(ggrepel) 
+# Categorize Results based on P-value & FDR for plotting
+results$Color <- "NS or FC < 0.5"
+results$Color[results$`Pr(>|t|)` < 0.05] <- "P < 0.05"
+
+results <- results %>%
+  dplyr::mutate(Expression = ifelse(
+   (Estimate >= 0 & `Pr(>|t|)` <= 0.05),"Up-regulated",
+   ifelse(Estimate <= 0 & `Pr(>|t|)` <= 0.05, "Down-regulated", "Unchanged")
+  ))
+# results$Color[results$FDR < 0.05] <- "FDR < 0.05"
+# results$Color[results$FDR < 0.001] <- "FDR < 0.001"
+# results$Color[abs(results$Estimate) < 0.5] <- "NS or FC < 0.5"
+results$Color <- factor(results$Color,
+                        levels = c("NS or FC < 0.5", "P < 0.05",
+                                   "FDR < 0.05", "FDR < 0.001"))
+
+# pick top genes for either side of volcano to label
+# order genes for convenience:
+results$invert_P <- (-log10(results$`Pr(>|t|)`)) * sign(results$Estimate)
+  unchanged_genes <- results[results$Expression == "Unchanged", ]
+  changed_genes <- results[results$Expression != "Unchanged", ]
+  
+  # Calculate the number of significant DEGs for each category
+  num_up_regulated <- sum(changed_genes$Expression == "Up-regulated")
+  num_down_regulated <- sum(changed_genes$Expression == "Down-regulated")
+
+    # Top 10 upregulated
+    upreg <- results %>%
+      arrange(`Pr(>|t|)`) %>%
+      filter(Expression == "Up-regulated")%>%
+        dplyr::slice(1:10)
+
+    # Top 10 downregulated
+    downreg <- results %>%
+      arrange(`Pr(>|t|)`) %>%
+      filter(Expression == "Down-regulated")%>%
+        dplyr::slice(1:10)
+
+  # Make into df for labeling
+  DEG_labels <- rbind(upreg, downreg)
+
+
+  results$Expression<- factor(results$Expression, levels = c("Down-regulated", "Unchanged", "Up-regulated"))
+
+
+results <- results[, -1*ncol(results)] # remove invert_P from matrix
+
+# Graph results
+ggplot(results,
+       aes(x = Estimate, y = -log10(`Pr(>|t|)`),
+           color = Expression, label = Gene)) +
+    # geom_vline(xintercept = c(0, 0), lty = "dashed") +
+    # geom_hline(yintercept = -log10(0.05), lty = "dashed") +
+    geom_point() +
+    labs(x = "Enriched in DKD <- log2(FC) -> Enriched in Control",
+         y = "Significance, -log10(P)",
+         color = "Significance") +
+    guides(colour = guide_legend(override.aes = list(size = 1.5), title = NULL)) +
+  scale_color_manual(values = c(`Down-regulated` = "dodgerblue",
+                                `Unchanged` = "gray",
+                                `Up-regulated` = "firebrick3"),
+                    labels = c(paste("Down-regulated (", num_down_regulated, ")", sep = ""),
+                               c(paste("Unchanged (", sum(unchanged_genes$Expression == "Unchanged"), ")", sep = "")),
+                 paste("Up-regulated (", num_up_regulated, ")", sep = "")),
+                     guide = guide_legend(override.aes = list(size = 4))) +
+  # scale_y_continuous(expand = expansion(mult = c(0,0.05))) +
+  geom_text_repel(data = dplyr::intersect(results, DEG_labels[1:7]),
+                  size = 4, point.padding = 0.15, color = "black",
+                  min.segment.length = .1, box.padding = .2, lwd = 2,
+                  max.overlaps = 50) +
+    theme_bw(base_size = 16) +
+    theme(legend.position = "bottom")
+
+
+```
+
+
+
+
+
+```{r aggregate grouping}
+
+# genes <- fData(demoData)[c("TargetName", "RTS_ID")]
+# 
+# genes$Gene <- genes$TargetName
+# 
+# results_IDs <- merge(results3, genes, by = "Gene")
+# 
+# results_IDs
+# 
+# write.csv(results_IDs, file = "/slipstream_old/home/cameronlunn/nanostring_testspace/GeoMx_kidney_vignette/LMM_results_general.csv")
+
+# 
+# 
+# DEGs_FDR.05_L2FC.5 <- results2%>% 
+#   arrange(`Pr(>|t|)`) %>%
+#   filter(FDR < 0.2)
+# 
+# write.csv(DEGs_FDR.05_L2FC.5, file = "/slipstream_old/home/cameronlunn/nanostring_testspace/GeoMx_kidney_vignette/DEGs_FDR.05_L2FC.5.csv")
+# 
+# 
+# read.csv("DEGs_FDR.05_L2FC.5.csv")
+# 
+# DEGs_FDR.05_L2FC.5 <- merge(DEGs_FDR.05_L2FC.5, genes, by = "Gene")
+# 
+# write.csv(DEGs_FDR.05_L2FC.5, file = "/slipstream_old/home/cameronlunn/nanostring_testspace/GeoMx_kidney_vignette/DEGs_FDR.05_L2FC.5.csv")
+
+```
+
+
+
+
+
+
+
+

@@ -1,0 +1,355 @@
+---
+title: "Bayesian_comparison_DEGs"
+author: "Cam Lunn"
+date: "2023-12-05"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+## Read in $\beta$ values and merge
+
+
+```{r Using general (no grouping) LMM}
+
+frequentist_LMM_results <- read.csv("R_data/LMM_results_general.csv") %>%
+  dplyr::arrange(`Pr...t..`)
+
+betas_individual <- read.csv("R_data/beta_filtered_genes_indv.csv") %>%
+  rename(RTS_ID = gene)
+
+betas_random <-  read.csv("R_data/beta_filtered_genes_random_20.csv") %>%
+  rename(RTS_ID = gene)
+
+
+overlap_individuals <- merge(betas_individual, frequentist_LMM_results, by = "RTS_ID") %>%
+    arrange(Pr...t..)
+
+
+overlap_individuals %>%
+  filter(Pr...t.. <= 0.05)
+
+
+#### Random
+overlap_random <- merge(betas_random, frequentist_LMM_results, by = "RTS_ID") %>%
+  arrange(Pr...t..)
+
+# See the 39 overlapped:
+overlap_random %>%
+  filter(Pr...t.. <= 0.05)
+
+
+```
+When merging the random Beta values to the entire gene list used in frequentist analysis, the list of betas drops from 439 --> 395. This means our model identified 44 genes which were removed during QC steps. Thus, our model is most likely overfitting to noise since it is using ~10% of genes that were removed due to poor data quality.
+
+When merging the individual Beta values, we go from 295 betas --> 273. This means our model using individual betas identified 22 genes which were removed during QC steps. 
+
+
+
+```{r, fig.width = 11, fig.height = 7, fig.wide = TRUE, warning = FALSE, message = FALSE}
+
+pval_cutoff = .05
+library(ggVennDiagram)
+library(dplyr)
+
+gene_sets <- list(
+  Condition1 = frequentist_LMM_results %>%  
+    filter(`Pr...t..`<= pval_cutoff) %>% 
+    magrittr::use_series(RTS_ID),
+  Condition2 = betas_random %>%
+    magrittr::use_series(RTS_ID)
+  # ,
+  # Condition3 = betas_individual %>%
+  #   magrittr::use_series(RTS_ID)
+)
+
+nrow(frequentist_LMM_results %>%  
+    filter(`Pr...t..`<= pval_cutoff))
+
+random_beta_laplace_venn <- ggVennDiagram(
+  gene_sets,
+  category.names = c(paste("Frequentist DEGs:", nrow(frequentist_LMM_results %>%  
+    filter(`Pr...t..`<= pval_cutoff))) , paste("Betas Random:", nrow(betas_random))
+                     # , "Betas Individual"
+                     ),
+  set_color = "black",
+  label_color = "black", label_alpha = 1
+) + scale_fill_gradient(low="beige",high = "red") + 
+  labs(caption = "p < 0.05",
+       title = "Overlap of DEGs using Laplace Priors") +
+  theme(plot.title = element_text(hjust = 0.5, face="bold"))
+# +
+#   theme(legend.position = "bottom")
+
+ggsave("./images/random_beta_laplace_venn.pdf", plot = random_beta_laplace_venn, width = 11)
+
+
+############# Individual
+
+gene_sets <- list(
+  Condition1 = frequentist_LMM_results %>%  
+    filter(`Pr...t..`<= pval_cutoff) %>% 
+    magrittr::use_series(RTS_ID),
+  # Condition2 = betas_random %>%
+  #   magrittr::use_series(RTS_ID)
+  # ,
+  Condition2 = betas_individual %>%
+    magrittr::use_series(RTS_ID)
+)
+
+individual_beta_laplace_venn <- ggVennDiagram(
+  gene_sets,
+  category.names = c(paste("Frequentist DEGs:", nrow(frequentist_LMM_results %>%  
+    filter(`Pr...t..`<= pval_cutoff))) , paste("Betas Individual:", nrow(betas_individual))
+                     # , "Betas Individual"
+                     ),
+  set_color = "black",
+  label_color = "black", label_alpha = 1
+) + scale_fill_gradient(low="beige",high = "red") + 
+  labs(caption = "p < 0.05",
+       title = "Overlap of DEGs using Laplace Priors") +
+  theme(plot.title = element_text(hjust = 0.5, face="bold"))
+# +
+#   theme(legend.position = "bottom")
+
+ggsave("./images/individual_beta_laplace_venn.pdf", plot = individual_beta_laplace_venn, width = 11)
+
+
+
+```
+
+
+
+###### Using Horseshoe
+
+
+```{r}
+
+frequentist_LMM_results <- read.csv("R_data/LMM_results_general.csv") %>%
+  arrange(`Pr...t..`)
+
+betas_individual_horse <- read.csv("R_data/beta_filtered_genes_indv_horseshoe.csv") %>%
+  rename(RTS_ID = gene)
+betas_individual_horse
+
+
+overlap_individuals_horse <- merge(betas_individual_horse, frequentist_LMM_results, by = "RTS_ID")
+overlap_individuals_horse %>%
+  arrange(`Pr...t..`) %>%
+  filter(`Pr...t..` < .05)
+
+
+
+betas_random_horse <-  read.csv("R_data/beta_filtered_genes_rand_horseshoe.csv") %>%
+  rename(RTS_ID = gene)
+betas_random_horse
+
+overlap_random_horse <- merge(betas_random_horse, frequentist_LMM_results, by = "RTS_ID")
+overlap_random_horse %>%
+  arrange(`Pr...t..`) %>%
+  filter(`Pr...t..` < .05)
+
+
+
+```
+
+
+#### Venn d
+
+```{r, fig.width = 11, fig.height = 7, fig.wide = TRUE, warning = FALSE, message = FALSE}
+
+pval_cutoff = .05
+library(ggVennDiagram)
+
+gene_sets <- list(
+  Condition1 = frequentist_LMM_results %>%  
+    filter(`Pr...t..`<= pval_cutoff) %>% 
+    magrittr::use_series(RTS_ID),
+  Condition2 = betas_random_horse %>%
+    magrittr::use_series(RTS_ID)
+  # ,
+  # Condition3 = betas_individual %>%
+  #   magrittr::use_series(RTS_ID)
+)
+
+nrow(frequentist_LMM_results %>%  
+    filter(`Pr...t..`<= pval_cutoff))
+
+random_beta_horse_venn <- ggVennDiagram(
+  gene_sets,
+  category.names = c(paste("Frequentist DEGs:", nrow(frequentist_LMM_results %>%  
+    filter(`Pr...t..`<= pval_cutoff))) , paste("Betas Random:", nrow(betas_random_horse))
+                     # , "Betas Individual"
+                     ),
+  set_color = "black",
+  label_color = "black", label_alpha = 1
+) + scale_fill_gradient(low="beige",high = "red") + 
+  labs(caption = "p < 0.05",
+       title = "Overlap of DEGs using Horseshoe Priors") +
+  theme(plot.title = element_text(hjust = 0.5, face="bold"))
+# +
+#   theme(legend.position = "bottom")
+
+ggsave("./images/random_beta_horse_venn.pdf", plot = random_beta_horse_venn, width = 11)
+
+
+############# Individual
+
+gene_sets <- list(
+  Condition1 = frequentist_LMM_results %>%  
+    filter(`Pr...t..`<= pval_cutoff) %>% 
+    magrittr::use_series(RTS_ID),
+  # Condition2 = betas_random %>%
+  #   magrittr::use_series(RTS_ID)
+  # ,
+  Condition2 = betas_individual_horse %>%
+    magrittr::use_series(RTS_ID)
+)
+
+individual_beta_horse_venn <- ggVennDiagram(
+  gene_sets,
+  category.names = c(paste("Frequentist DEGs:", nrow(frequentist_LMM_results %>%  
+    filter(`Pr...t..`<= pval_cutoff))) , paste("Betas Individual:", nrow(betas_individual_horse))
+                     # , "Betas Individual"
+                     ),
+  set_color = "black",
+  label_color = "black", label_alpha = 1
+) + scale_fill_gradient(low="beige",high = "red") + 
+  labs(caption = "p < 0.05",
+       title = "Overlap of DEGs using Horseshoe Priors") +
+  theme(plot.title = element_text(hjust = 0.5, face="bold"))
+# +
+#   theme(legend.position = "bottom")
+
+ggsave("./images/individual_beta_horse_venn.pdf", plot = individual_beta_horse_venn, width = 11)
+
+
+
+```
+
+### Check overlap of all gene sets... did they find similar genes?
+
+
+```{r, fig.width=11, fig.height=7}
+
+overlap_individuals
+overlap_individuals_horse
+overlap_random
+overlap_random_horse
+
+
+gene_sets_full <- list(
+  Condition1 = overlap_individuals %>% 
+    magrittr::use_series(RTS_ID),
+  Condition2 = overlap_individuals_horse %>%
+    magrittr::use_series(RTS_ID),
+  Condition3 = overlap_random %>%
+    magrittr::use_series(RTS_ID),
+  Condition4 = overlap_random_horse %>%
+    magrittr::use_series(RTS_ID)
+)
+library(ggVennDiagram)
+full_venn <- ggVennDiagram(
+  gene_sets_full,
+  category.names = c(paste("Laplace Betas Indiv:", nrow(overlap_individuals)) , 
+                     paste("Hoseshoe Betas Indiv:", nrow(overlap_individuals_horse)),
+                     paste("Laplace Betas Random:", nrow(overlap_random)),
+                     paste("Horseshoe Betas Random:", nrow(overlap_random_horse))
+                     ),
+  set_color = "black",
+  label_color = "black", label_alpha = 1
+) + scale_fill_gradient(low="beige",high = "red") + 
+  labs(caption = "p < 0.05",
+       title = "Overlap of DEGs using ALL Priors") +
+  theme(plot.title = element_text(hjust = 0.5, face="bold"))+
+  scale_x_continuous(expand = expansion(mult = .2))
+
+
+ggsave("./images/full_venn.pdf", plot = full_venn, width = 11)
+
+
+```
+
+
+
+
+
+```{r}
+
+ full_overlap <- intersect(intersect(intersect(gene_sets_full$Condition1, gene_sets_full$Condition3), gene_sets_full$Condition4),  gene_sets_full$Condition2)
+
+data.frame(full_overlap)
+
+(frequentist_LMM_results %>%
+  filter(Pr...t.. < .05))$RTS_ID
+
+merge(data.frame(intersect(full_overlap, (frequentist_LMM_results %>%
+  filter(Pr...t.. < .05))$RTS_ID)) %>% rename(RTS_ID = intersect.full_overlap...frequentist_LMM_results.....filter.Pr...t.....
+), (frequentist_LMM_results %>%
+  filter(Pr...t.. < .05)), by = "RTS_ID") %>%
+  arrange(Estimate)
+
+```
+
+CDKN1C gene provides instructions for making a protein that helps regulate growth.
+REN gene provides instructions for making a protein called renin, which is produced in the kidneys.
+UMOD gene provides instructions for making a protein called uromodulin. This protein is produced by the kidneys and then excreted from the body in urine.
+CALM2: Increased exosomal Calmodulin in the urine of patients with diabetic kidney disease (DKD) may be derived from either CALM1, CALM2
+PTMAL expressed in kidney, associated with kidney diseases in mice
+
+
+
+
+
+```{r, fig.width=11, fig.height=7}
+
+betas_individual_horse
+betas_random_horse
+betas_individual
+betas_random
+
+
+gene_sets_full_full <- list(
+  Condition1 = betas_individual %>% 
+    magrittr::use_series(RTS_ID),
+  Condition2 = betas_individual_horse %>%
+    magrittr::use_series(RTS_ID),
+  Condition3 = betas_random %>%
+    magrittr::use_series(RTS_ID),
+  Condition4 = betas_random_horse %>%
+    magrittr::use_series(RTS_ID)
+)
+
+
+full_venn2 <- ggVennDiagram(
+  gene_sets_full_full,
+  category.names = c(paste("Laplace Betas Indiv:", nrow(betas_individual)) , 
+                     paste("Hoseshoe Betas Indiv:", nrow(betas_individual_horse)),
+                     paste("Laplace Betas Random:", nrow(betas_random)),
+                     paste("Horseshoe Betas Random:", nrow(betas_random_horse))
+                     ),
+  set_color = "black",
+  label_color = "black", label_alpha = 1
+) + scale_fill_gradient(low="beige",high = "red") + 
+  labs(caption = "p < 0.05",
+       title = "Overlap of DEGs using ALL Priors") +
+  theme(plot.title = element_text(hjust = 0.5, face="bold"))+
+  scale_x_continuous(expand = expansion(mult = .2))
+
+
+ggsave("./images/full_venn_complete.pdf", plot = full_venn2, width = 11)
+
+
+```
+
+
+
+
+
+
+
+
+
