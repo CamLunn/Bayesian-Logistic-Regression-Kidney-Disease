@@ -1,12 +1,16 @@
 # Bayesian-Logistic-Regression-Kidney-Disease
 
+## Background
+
+We use a GeoMx publicly available data set of Spatial Transcriptomic gene counts from human diabetic kidney disease samples to build a logistic regression model to predict the presence of diabetic kidney disease. We utilize a Bayesian approach to build this model, in contrast to the frequentist approaches used in much of the existing literature in this field (Nanostring's analysis we are comparing results to found (here)[https://bioconductor.org/packages/devel/workflows/vignettes/GeoMxWorkflows/inst/doc/GeomxTools_RNA-NGS_Analysis.html]). Our model identifies genes most strongly associated with the health diagnoses (Diseased versus Normal) being modeled, but it currently does not differentiate well between individual characteristics and disease characteristics. In this paper we detail our model’s results, its limitations, and how it can be iterated on for further Bayesian analysis of genetic profiling data.
+
 ## Repo Structure
 
 ```
 .
 ├── README.md
 ├── R_analysis # Contains all files used in R
-│   ├── Bayesian_DEGs_Comparison.Rmd    # Process coefficients (DEGs) from STAN models
+│   ├── Bayesian_DEGs_Comparison.Rmd    # Process coefficients (DEGs) from model_notebook_1.ipynb
 │   ├── Kidney_vignette.Rmd             # Reproduce results from Nanostring
 │   ├── R_data  # DATA
 │   │   ├── 5 .csv files with results from STAN
